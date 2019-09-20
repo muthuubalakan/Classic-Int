@@ -4,6 +4,10 @@
 
 class ClassicInt(int):
     def __init__(self, integer):
+        assert isinstance(integer, int),(
+                'Expected a `int` value.'
+                f' But got {type(integer).__name__}'
+                )
         self.integer = integer
         self.numbers = [int(i) for i in str(integer)]
         self.__class__.__call__ = self.integer
@@ -19,8 +23,8 @@ class ClassicInt(int):
             yield number
 
     def __add__(self, others=None):
-        # if not others:
-        #     return sum(self.numbers)
+        if not others:
+            return sum(self.numbers)
         return self.integer + others
     
     def __sum__(self, others=None):
